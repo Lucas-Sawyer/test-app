@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Catalog;
+
+class CatalogController extends Controller
+{
+    public function catalog()
+    {
+        #$products= DB::table('catalog')->get();
+        $products=Catalog::all();
+
+        return view('catalog', compact('products'));
+    }
+
+    public function product_detail($name)
+    {
+        $product = DB::table('catalog')->where('name', $name)->get();
+
+        return view('detail', compact('product'));
+    }
+}
